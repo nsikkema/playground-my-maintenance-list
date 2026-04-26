@@ -1,3 +1,6 @@
+//! Shared router utilities for the maintenance list application.
+
+/// Adds two unsigned 64-bit integers together.
 pub fn add(left: u64, right: u64) -> u64 {
     left + right
 }
