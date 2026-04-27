@@ -10,6 +10,7 @@ publish.workspace = true
 debug-web = []
 
 [dependencies]
+lib-router-api.workspace = true
 lib-router-web.workspace = true
 
 axum.workspace = true

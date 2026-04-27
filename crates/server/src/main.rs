@@ -9,6 +9,7 @@ use lib_router_web::{favicon_router, web_router};
 
 fn router() -> Router {
     Router::new()
+        .nest_service("/api", lib_router_api::api_router())
         .nest_service("/web", web_router())
         .merge(favicon_router())
         .fallback(|| async { Redirect::temporary("/web") })
@@ -17,6 +18,7 @@ fn router() -> Router {
 #[cfg(feature = "debug-web")]
 fn router() -> Router {
     Router::new()
+        .nest_service("/api", lib_router_api::api_router())
         .merge(favicon_router())
         .fallback(|| async { Redirect::temporary("http://127.0.0.1:4000/web") })
 }

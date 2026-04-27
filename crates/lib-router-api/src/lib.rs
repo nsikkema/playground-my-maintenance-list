@@ -1,17 +1,28 @@
-//! API router for the maintenance list application.
+//! API router for the application's HTTP API.
+//!
+//! Provides the [`api_router`] function which constructs an [`axum::Router`]
+//! with all API routes registered, including health-check endpoints.
 
-/// Adds two unsigned 64-bit integers together.
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
+mod health;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+use axum::Router;
+use axum::routing::get;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+/// Internal application state shared across API handlers.
+#[derive(Clone, Debug)]
+struct AppState {}
+
+/// Constructs the API [`Router`] with all registered routes.
+///
+/// # Routes
+///
+/// | Method | Path | Handler |
+/// |--------|------|---------|
+/// | `GET` | `/health/live` | [`health::live`] – liveness probe |
+/// | `GET` | `/health/ready` | [`health::ready`] – readiness probe |
+pub fn api_router() -> Router {
+    Router::new()
+        .route("/health/live", get(health::live))
+        .route("/health/ready", get(health::ready))
+        .with_state(AppState {})
 }

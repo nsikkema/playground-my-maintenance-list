@@ -285,6 +285,9 @@ version = "0.1.0"
 [[package]]
 name = "lib-router-api"
 version = "0.1.0"
+dependencies = [
+ "axum",
+]
 
 [[package]]
 name = "lib-router-shared"
@@ -593,6 +596,7 @@ name = "server"
 version = "0.1.0"
 dependencies = [
  "axum",
+ "lib-router-api",
  "lib-router-web",
  "tokio",
 ]
