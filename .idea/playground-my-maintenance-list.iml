@@ -10,6 +10,8 @@
       <sourceFolder url="file://$MODULE_DIR$/crates/lib-shared/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/crates/migration/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/crates/server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/crates/lib-web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/crates/lib-web/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
