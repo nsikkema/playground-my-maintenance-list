@@ -1,0 +1,36 @@
+[package]
+name = "lib-web"
+version.workspace = true
+rust-version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[features]
+list = ["dep:itertools"]
+
+[dependencies]
+itertools = { workspace = true, optional = true }
+
+phf = { workspace = true, features = ["macros"] }
+
+[build-dependencies]
+camino.workspace = true
+
+phf_codegen.workspace = true
+glob.workspace = true
+mime_guess.workspace = true
+flate2.workspace = true
+
+[dev-dependencies]
+lib-web = { path = ".", features = ["list"] }
+
+camino.workspace = true
+mime_guess.workspace = true
+flate2.workspace = true
+
+[package.metadata.cargo-machete]
+ignored = ["phf"]
+
+[lints]
+workspace = true

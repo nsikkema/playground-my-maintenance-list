@@ -11,6 +11,22 @@ edition = "2024"
 license = "MIT OR Apache-2.0"
 publish = false
 
+[workspace.dependencies]
+lib-web = { path = "crates/lib-web" }
+lib-router-api = { path = "crates/lib-router-api" }
+lib-router-web = { path = "crates/lib-router-web" }
+
+axum = "~0.8.9"
+axum-extra = "~0.12.6"
+camino = "~1.2.2"
+flate2 = "~1.1.9"
+glob = "~0.3.3"
+itertools = "~0.14.0"
+mime_guess = "~2.0.5"
+phf = "~0.13.1"
+phf_codegen = "~0.13.1"
+tokio = { version = "~1.52.1", features = ["full"] }
+
 [workspace.lints.rust]
 deprecated-safe = { level = "deny", priority = -1 }
 future-incompatible = { level = "deny", priority = -1 }
