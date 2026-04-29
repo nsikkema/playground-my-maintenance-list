@@ -1,0 +1,50 @@
+name: Lint Javascript
+on: [ pull_request ]
+jobs:
+  javascript-lint:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Filter
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            javascript:
+              - '*.js'
+              - '*.ts'
+              - '*.json'
+              - '*.vue'
+              - '*.css'
+              - '*.scss'
+              - '**/package.json'
+              - '**/package-lock.json'
+              - '.github/workflows/javascript-lint.yml'
+      - name: Use Node.js
+        if: steps.filter.outputs.javascript == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+      - name: Update Rust
+        if: steps.filter.outputs.javascript == 'true'
+        run: rustup update
+      - name: Add Clippy
+        if: steps.filter.outputs.javascript == 'true'
+        run: rustup component add clippy
+      - name: Build Rust project
+        if: steps.filter.outputs.javascript == 'true'
+        run: cargo build
+      - name: Install Node dependencies
+        if: steps.filter.outputs.javascript == 'true'
+        run: npm ci
+      - name: lint check
+        if: steps.filter.outputs.javascript == 'true'
+        run: |
+          cd crates/lib-web
+          npm run lint
+      - name: format check
+        if: steps.filter.outputs.javascript == 'true'
+        run: |
+          cd crates/lib-web
+          npm run format -- --check

@@ -16,6 +16,11 @@ jobs:
               - '**/Cargo.toml'
               - '**/*.rs'
               - '.github/workflows/rust-lint.yml'
+      - name: Use Node.js
+        if: steps.filter.outputs.rust == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
       - name: Update Rust
         if: steps.filter.outputs.rust == 'true'
         run: rustup update
