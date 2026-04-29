@@ -1,0 +1,11 @@
+.git
+.gitignore
+target/
+node_modules/
+crates/lib-web/node_modules/
+crates/lib-web/dist/
+*.env
+.env*
+.DS_Store
+README.md
+
